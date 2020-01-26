@@ -1,14 +1,16 @@
+
+
 #include <Servo.h>
 
 int angle;
 Servo bottomServo;
 Servo topServo;
-const int joyY = 10;
-const int joyX = 11;
-int joyValY;
-int joyValX;
 int bottomMoveVal;
 int topMoveVal;
+
+const int joyY = 0;
+const int joyX = 1;
+
 
 void setup() {
   bottomServo.attach(13);
@@ -17,10 +19,11 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  joyValY = analogRead(joyY);
-  joyValX = analogRead(joyX);
-  bottomMoveVal = map(joyValX, 0, 1023, 0, 180);
-  topMoveVal = map(0, joyValY, 1023, 0, 180);
+  int joyValY = analogRead(joyY);
+  int joyValX = analogRead(joyX);
+  bottomMoveVal = map(joyValX, 0, 1023, 0, 170);
+  topMoveVal = map(joyValY,0, 1023, 0, 170);
   bottomServo.write(bottomMoveVal);
   topServo.write(topMoveVal);
+  delay(50);
 }
